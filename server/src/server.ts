@@ -5,12 +5,9 @@ import dotenv from "dotenv";
 dotenv.config();
 const PORT = process.env.PORT;
 const server = express();
-const origin =
-  process.env.NODE_ENV === "DEVELOPMENT"
-    ? "*"
-    : "https://react-codesh20201030.onrender.com";
+const origin = process.env.ORIGINS;
 
-server.use(cors({ origin }));
+server.use(cors({ origin: origin?.split(",") }));
 server.use(express.json());
 
 server.listen(PORT, () => console.log(`http://localhost:${PORT}`));
